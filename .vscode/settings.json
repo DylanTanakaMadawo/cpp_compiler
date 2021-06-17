@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "*.module": "php",
+        "array": "cpp",
+        "*.tcc": "cpp",
+        "complex": "cpp",
+        "scoped_allocator": "cpp",
+        "system_error": "cpp",
+        "thread": "cpp",
+        "tuple": "cpp",
+        "valarray": "cpp",
+        "random": "cpp",
+        "iostream": "cpp"
+    }
+}

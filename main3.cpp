@@ -4,15 +4,40 @@
 
 using namespace std;
 
-int main()
+class Parser
 {
+public:
+    Parser(char *line);
+    ~Parser();
 
-    char name[50];
+    Expression *statement();
 
-    // cin >> name;
-    cin.getline(name, 20);
+private:
+    Tokenizer *tokens;
 
-    cout << name << endl;
+    Expression *assignment();
+    Expression *calculation();
+    Expression *sum();
+    Expression *product();
+    Expression *factor();
+    Expression *power();
+    Expression *term();
+    Expression *group();
+    Expression *number();
+    Expression *variable();
+};
 
-    return 0;
+Expression *Parser::assignment()
+{
+    int mark = tokens->mark();
+    VariableExpression *var = nullptr;
+    Expression *rhs = nullptr;
+    if ((var = tokens->variable()) && tokens->character('=') && (rhs = sum()) && tokens->atEnd())
+        return new AssignmentExpression(var, rhs);
+    if (var)
+        delete var;
+    if (rhs)
+        delete rhs;
+    tokens->reset(mark);
+    return nullptr;
 }

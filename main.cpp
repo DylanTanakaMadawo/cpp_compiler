@@ -42,18 +42,6 @@ double applyOp(double a, double b, char op)
     return 1;
 }
 
-// int applyAssignment(char op, int x)
-// {
-//     int y = op - '0';
-//     int *ptr = &x;
-//     y = *ptr;
-//     if (op == '=')
-//     {
-//         return y;
-//     }
-//     return 1;
-// }
-
 // Function that returns value of
 // expression after evaluation.
 int evaluate(string tokens)
@@ -106,35 +94,27 @@ int evaluate(string tokens)
             // correct the offset.
             i--;
         }
+
         else if (tokens[i] >= 'a' && tokens[i] <= 'z')
         {
-            int x = tokens[i] - '0';
-            int next_value = (tokens[i + 2] - '0');
-            int j = 2;
-            while (i < tokens.length() && (tokens[i] >= 'a' && tokens[i] <= 'z'))
+            if (tokens[i + 1] == '=')
             {
-                next_value = next_value + (tokens[i] - '0');
-                i++;
+                int x = tokens[i] = '0';
+                int next_value = (tokens[i + 2] - '0');
+                int *ptr = &next_value;
+                x = *ptr;
+
+                values.push(x);
             }
 
-            int *ptr = &next_value;
-            x = *ptr;
-            x = x - 48;
+            // int x = tokens[i] - '0';
+            // int next_value = (tokens[i + 2] - '0');
+            // int *ptr = &next_value;
+            // x = *ptr;
+            // // x = x - 48;
 
-            values.push(x);
+            // values.push(x);
         }
-
-        //--------------------------------------------------
-        // else if (tokens[i] == '=')
-        // {
-        //     int val = values.top();
-        //     char op = tokens[i];
-
-        //     cout << " above " << endl;
-        //     values.push(applyAssignment(op, val));
-        //     cout << " below " << endl;
-        // }
-        //----------------------------------------------------
 
         // Closing brace encountered, solve
         // entire brace.

@@ -122,6 +122,7 @@ int get_value(string my_string)
             int j = 2;
 
             //a number can be multiple digits
+
             while (i < my_string.length() && (my_string[i] >= 'a' && my_string[i] <= 'z'))
             {
                 next_value = next_value + (my_string[i] - '0');
